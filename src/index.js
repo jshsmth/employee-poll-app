@@ -8,6 +8,8 @@ import CreatePoll from "./components/CreatePoll";
 import Leaderboard from "./components/Leaderboard";
 import Questions from "./components/Questions";
 
+// Redux Store
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
