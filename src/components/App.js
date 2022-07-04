@@ -37,7 +37,7 @@ function App() {
 
   return (
     <div className="App">
-      <ChooseUser />
+      <ChooseUser allUsers={allUsers} />
     </div>
   );
 }
