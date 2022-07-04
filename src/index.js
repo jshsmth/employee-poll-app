@@ -4,6 +4,9 @@ import "./index.css";
 import App from "./components/App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import CreatePoll from "./components/CreatePoll";
+import Leaderboard from "./components/Leaderboard";
+import Questions from "./components/Questions";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -11,6 +14,9 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
+        <Route path="/add" element={<CreatePoll />} />
+        <Route path="/leaderboard" element={<Leaderboard />} />
+        <Route path="/questions/:id" element={<Questions />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
