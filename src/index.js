@@ -7,20 +7,22 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CreatePoll from "./components/CreatePoll";
 import Leaderboard from "./components/Leaderboard";
 import Questions from "./components/Questions";
-
-// Redux Store
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/add" element={<CreatePoll />} />
-        <Route path="/leaderboard" element={<Leaderboard />} />
-        <Route path="/questions/:id" element={<Questions />} />
-      </Routes>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="/add" element={<CreatePoll />} />
+          <Route path="/leaderboard" element={<Leaderboard />} />
+          <Route path="/questions/:id" element={<Questions />} />
+        </Routes>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
 
