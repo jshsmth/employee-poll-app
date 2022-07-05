@@ -2,22 +2,19 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Nav from "./Nav";
-import { useSelector, useDispatch } from "react-redux";
-import DashboardCard from "./DashboardCard";
-import { CollectionsOutlined } from "@mui/icons-material";
+import { useSelector } from "react-redux";
+import UnanswerdCard from "./UnanswerdCard";
+import AnsweredCard from "./AnsweredCard";
 
 function Dashboard({ allQuestions }) {
   const currentUser = useSelector((state) => state.users.userLoggedIn);
   const userQuestions = allQuestions[0] || {};
-
   console.log(userQuestions);
 
-  // const users = useSelector((state) => state.users);
-  const dispatch = useDispatch();
-  const currentUserAnswers = currentUser?.answers;
-  const currentUserQuestions = currentUser?.questions;
-
-  console.log(currentUserAnswers);
+  // // const users = useSelector((state) => state.users);
+  // const dispatch = useDispatch();
+  // const currentUserAnswers = currentUser?.answers;
+  // const currentUserQuestions = currentUser?.questions;
 
   return (
     <Box>
@@ -26,11 +23,11 @@ function Dashboard({ allQuestions }) {
       <Typography variant="h5" component="div">
         Unanswered
       </Typography>
-      <DashboardCard title="New questions" />
+      <UnanswerdCard title="New questions" />
       <Typography variant="h5" component="div">
         Answered
       </Typography>
-      <DashboardCard title="Done" />
+      <AnsweredCard title="Answered questions" />
     </Box>
   );
 }
