@@ -13,7 +13,7 @@ import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
 
 import { setUser } from "../store/userSlice";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 function createData(avatarUrl, name, questionsMade, passwords) {
   return { avatarUrl, name, questionsMade, passwords };
@@ -22,9 +22,11 @@ function createData(avatarUrl, name, questionsMade, passwords) {
 function ChooseUser({ allUsers }) {
   const userAccounts = allUsers[0] || {};
   const userNames = Object.keys(userAccounts);
+  const dispatch = useDispatch();
 
-  const userLoggedIn = useSelector((state) => state.users.userLoggedIn);
-  console.log(userLoggedIn);
+  const handleAssignUser = (userName) => {
+    dispatch(setUser(userName));
+  };
 
   const rows = [
     ...userNames.map((name) => {
@@ -65,6 +67,7 @@ function ChooseUser({ allUsers }) {
                 <TableRow
                   key={row?.name}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  onClick={() => handleAssignUser(row)}
                 >
                   <TableCell component="th" scope="row">
                     <Avatar alt="user" src={row?.avatarUrl} />

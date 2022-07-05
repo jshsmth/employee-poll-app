@@ -4,11 +4,14 @@ import { addQuestions } from "../store/questionSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { _getUsers, _getQuestions } from "../store/_DATA";
 import ChooseUser from "./ChooseUser";
+import Dashboard from "./Dashboard";
 
 function App() {
   const users = useSelector((state) => state.users);
   const questions = useSelector((state) => state.questions);
   const dispatch = useDispatch();
+  const userLoggedIn = useSelector((state) => state.users.userLoggedIn);
+  console.log(userLoggedIn);
 
   ////////////////////////////////////////////////
   React.useEffect(() => {
@@ -37,7 +40,7 @@ function App() {
 
   return (
     <div className="App">
-      <ChooseUser allUsers={allUsers} />
+      {userLoggedIn ? <Dashboard /> : <ChooseUser allUsers={allUsers} />}
     </div>
   );
 }

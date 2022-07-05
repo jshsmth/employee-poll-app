@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CreatePoll from "./components/CreatePoll";
 import Leaderboard from "./components/Leaderboard";
 import Questions from "./components/Questions";
+import Dashboard from "./components/Dashboard";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 
@@ -18,6 +19,7 @@ root.render(
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/add" element={<CreatePoll />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
           <Route path="/questions/:id" element={<Questions />} />
         </Routes>
