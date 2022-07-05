@@ -33,7 +33,7 @@ export default function Nav() {
           />
 
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Poll App
+            {user?.name}
           </Typography>
           <MenuItem>
             <Typography textAlign="center">Home</Typography>
