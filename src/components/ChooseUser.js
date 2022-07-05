@@ -12,6 +12,9 @@ import Box from "@mui/system/Box";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
 
+import { setUser } from "../store/userSlice";
+import { useSelector, useDispatch } from "react-redux";
+
 function createData(avatarUrl, name, questionsMade, passwords) {
   return { avatarUrl, name, questionsMade, passwords };
 }
@@ -20,13 +23,15 @@ function ChooseUser({ allUsers }) {
   const userAccounts = allUsers[0] || {};
   const userNames = Object.keys(userAccounts);
 
+  const userLoggedIn = useSelector((state) => state.users.userLoggedIn);
+  console.log(userLoggedIn);
+
   const rows = [
     ...userNames.map((name) => {
       const user = userAccounts[name];
       const password = user?.password;
       const avatarUrl = user?.avatarUrl;
       const questionsMade = user?.questions.length || 0;
-      console.log(userAccounts[name]);
       return createData(avatarUrl, name, questionsMade, password);
     }),
   ];
