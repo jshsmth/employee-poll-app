@@ -1,9 +1,9 @@
 import React from "react";
 
-function Leaderboard(props) {
+function Leaderboard() {
   return (
     <div>
-      <h1>Leaderboard</h1>
+      <h1>Leaderboards</h1>
     </div>
   );
 }
