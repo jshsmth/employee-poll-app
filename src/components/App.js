@@ -11,7 +11,6 @@ function App() {
   const questions = useSelector((state) => state.questions);
   const dispatch = useDispatch();
   const userLoggedIn = useSelector((state) => state.users.userLoggedIn);
-  console.log(userLoggedIn);
 
   ////////////////////////////////////////////////
   React.useEffect(() => {
