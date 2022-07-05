@@ -40,7 +40,11 @@ function App() {
 
   return (
     <div className="App">
-      {userLoggedIn ? <Dashboard /> : <ChooseUser allUsers={allUsers} />}
+      {userLoggedIn ? (
+        <Dashboard allQuestions={allQuestions} />
+      ) : (
+        <ChooseUser allUsers={allUsers} />
+      )}
     </div>
   );
 }
