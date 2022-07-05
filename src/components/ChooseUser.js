@@ -25,7 +25,8 @@ function ChooseUser({ allUsers }) {
   const dispatch = useDispatch();
 
   const handleAssignUser = (userName) => {
-    dispatch(setUser(userName));
+    const userData = userAccounts[userName];
+    dispatch(setUser(userData));
   };
 
   const rows = [
@@ -67,7 +68,7 @@ function ChooseUser({ allUsers }) {
                 <TableRow
                   key={row?.name}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  onClick={() => handleAssignUser(row)}
+                  onClick={() => handleAssignUser(row?.name)}
                 >
                   <TableCell component="th" scope="row">
                     <Avatar alt="user" src={row?.avatarUrl} />
