@@ -20,7 +20,7 @@ function ViewPoll() {
   const user = questions?.value?.[0]?.[pollId];
   const userThatMadePoll = users?.value?.[0]?.[user?.author];
   const userLoggedIn = useSelector((state) => state.users.userLoggedIn);
-  console.log(user?.optionOne.text);
+
   //////////////////////////////////////////////////////
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
