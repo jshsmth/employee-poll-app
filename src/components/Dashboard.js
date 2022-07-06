@@ -16,12 +16,30 @@ function Dashboard() {
   return (
     <Box>
       <h1>Welcome, {currentUser?.name}</h1>
-      <Typography variant="h5" component="div">
-        Unanswered
+      <Typography
+        variant="h5"
+        component="div"
+        sx={{
+          margin: "2rem",
+          textTransform: "uppercase",
+          color: "red",
+          backgroundColor: "white",
+        }}
+      >
+        Unanswered ⛔️
       </Typography>
       <UnanswerdCard title="New questions" />
-      <Typography variant="h5" component="div">
-        Answered
+      <Typography
+        variant="h5"
+        component="div"
+        sx={{
+          margin: "2rem",
+          textTransform: "uppercase",
+          color: "green",
+          backgroundColor: "white",
+        }}
+      >
+        Answered 🎈
       </Typography>
       <AnsweredCard title="Answered questions" />
     </Box>

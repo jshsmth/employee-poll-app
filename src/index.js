@@ -10,6 +10,7 @@ import ViewPoll from "./components/ViewPoll";
 import Dashboard from "./components/Dashboard";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
+import NotFound from "./components/NotFound";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -22,6 +23,7 @@ root.render(
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
           <Route path="/questions/:id" element={<ViewPoll />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </Provider>
