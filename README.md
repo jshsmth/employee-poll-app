@@ -5,4 +5,5 @@
 
 ## Description of app
 
-Employee polls app created for the assessment state of the react nano course by Udacity.
+Employee polls app created for the assessment state of the react nano course by Udacity. The purpose of this
+app is to determine using redux state management to hold information.
