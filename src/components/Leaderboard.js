@@ -30,9 +30,10 @@ function Leaderboard() {
   const rows = [
     ...userNames.map((name) => {
       const user = userAccounts[name];
+      console.log(user);
       const answersLength = Object.keys(user.answers);
       const created = answersLength?.length || 0;
-      const avatarUrl = user?.avatarUrl;
+      const avatarUrl = user?.avatarURL;
       const questionsMade = user?.questions.length || 0;
       const totalPoints = created + questionsMade;
       return createData(avatarUrl, name, questionsMade, created, totalPoints);

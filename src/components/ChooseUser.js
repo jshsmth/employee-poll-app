@@ -33,7 +33,7 @@ function ChooseUser({ allUsers }) {
     ...userNames.map((name) => {
       const user = userAccounts[name];
       const password = user?.password;
-      const avatarUrl = user?.avatarUrl;
+      const avatarUrl = user?.avatarURL;
       const questionsMade = user?.questions.length || 0;
       return createData(avatarUrl, name, questionsMade, password);
     }),
