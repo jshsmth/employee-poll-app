@@ -1,15 +1,12 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import Nav from "./Nav";
 import { useSelector } from "react-redux";
 import UnanswerdCard from "./UnanswerdCard";
 import AnsweredCard from "./AnsweredCard";
 
-function Dashboard({ allQuestions }) {
+function Dashboard() {
   const currentUser = useSelector((state) => state.users.userLoggedIn);
-  const userQuestions = allQuestions[0] || {};
-  console.log(userQuestions);
 
   // // const users = useSelector((state) => state.users);
   // const dispatch = useDispatch();
@@ -18,7 +15,6 @@ function Dashboard({ allQuestions }) {
 
   return (
     <Box>
-      <Nav />
       <h1>Welcome, {currentUser?.name}</h1>
       <Typography variant="h5" component="div">
         Unanswered

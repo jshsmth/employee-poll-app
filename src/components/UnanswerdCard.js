@@ -13,9 +13,9 @@ function DashboardCard({ title }) {
 
   // console.log(questions?.value[0]);
 
-  currentUser?.questions.forEach((question) => {
-    console.log(questions?.value[0][question]);
-  });
+  // currentUser?.questions.forEach((question) => {
+  //   console.log(questions?.value[0][question]);
+  // });
 
   return (
     <>

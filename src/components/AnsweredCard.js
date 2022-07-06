@@ -5,12 +5,19 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-function AnsweredCard({ title }) {
+function AnsweredCard() {
   const currentUser = useSelector((state) => state.users.userLoggedIn);
   const questions = useSelector((state) => state.questions);
   const currentUserAnswer = Object.keys(currentUser?.answers);
+
+  let navigate = useNavigate();
+
+  const handleViewPoll = (pollId) => {
+    navigate(`/questions/${pollId}`);
+  };
 
   return (
     <Box
@@ -20,7 +27,6 @@ function AnsweredCard({ title }) {
     >
       {currentUserAnswer.map((questionId) => {
         const poll = questions?.value[0][questionId];
-        console.log(poll);
         return (
           <Card key={questionId} sx={{ maxWidth: 275, margin: "2rem" }}>
             <CardContent>
@@ -39,7 +45,9 @@ function AnsweredCard({ title }) {
               </Typography>
             </CardContent>
             <CardActions>
-              <Button size="small">View poll</Button>
+              <Button size="small" onClick={() => handleViewPoll(poll?.id)}>
+                View poll
+              </Button>
             </CardActions>
           </Card>
         );

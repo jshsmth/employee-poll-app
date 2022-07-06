@@ -3,12 +3,12 @@ import { addUser } from "../store/userSlice";
 import { addQuestions } from "../store/questionSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { _getUsers, _getQuestions } from "../store/_DATA";
+import Nav from "./Nav";
 import ChooseUser from "./ChooseUser";
 import Dashboard from "./Dashboard";
 
 function App() {
   const users = useSelector((state) => state.users);
-  const questions = useSelector((state) => state.questions);
   const dispatch = useDispatch();
   const userLoggedIn = useSelector((state) => state.users.userLoggedIn);
 
@@ -34,16 +34,12 @@ function App() {
 
   ////////////////////////////////////////////////
   const allUsers = users?.value;
-  const allQuestions = questions?.value;
   ////////////////////////////////////////////////
 
   return (
     <div className="App">
-      {userLoggedIn ? (
-        <Dashboard allQuestions={allQuestions} />
-      ) : (
-        <ChooseUser allUsers={allUsers} />
-      )}
+      {userLoggedIn && <Nav />}
+      {userLoggedIn ? <Dashboard /> : <ChooseUser allUsers={allUsers} />}
     </div>
   );
 }

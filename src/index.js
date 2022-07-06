@@ -6,7 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CreatePoll from "./components/CreatePoll";
 import Leaderboard from "./components/Leaderboard";
-import Questions from "./components/Questions";
+import ViewPoll from "./components/ViewPoll";
 import Dashboard from "./components/Dashboard";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
@@ -21,7 +21,7 @@ root.render(
           <Route path="/add" element={<CreatePoll />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
-          <Route path="/questions/:id" element={<Questions />} />
+          <Route path="/questions/:id" element={<ViewPoll />} />
         </Routes>
       </BrowserRouter>
     </Provider>
