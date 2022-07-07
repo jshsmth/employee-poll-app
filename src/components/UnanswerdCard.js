@@ -5,17 +5,28 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 function DashboardCard({ title }) {
-  const currentUser = useSelector((state) => state.users.userLoggedIn);
+  const currentUserId = useSelector((state) => state.users.userLoggedIn?.id);
+  const currentUser = useSelector((state) => state.users?.value[0]);
   const questions = useSelector((state) => state.questions);
+  const questionsFromUsers = questions?.value[0];
+  const currentUserAnsweredQuestions = Object.keys(
+    currentUser[currentUserId]?.answers
+  );
 
-  // console.log(questions?.value[0]);
+  const unAnsweredQuestions = Object.keys(questionsFromUsers)
+    .filter((key) => {
+      return !currentUserAnsweredQuestions.includes(key);
+    })
+    .reduce((obj, key) => {
+      return Object.assign(obj, {
+        [key]: questionsFromUsers[key],
+      });
+    }, {});
 
-  // currentUser?.questions.forEach((question) => {
-  //   console.log(questions?.value[0][question]);
-  // });
+  console.log(unAnsweredQuestions);
 
   return (
     <>

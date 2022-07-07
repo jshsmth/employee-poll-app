@@ -27,7 +27,6 @@ function ViewPoll() {
   const totalVotesForOptionTwo = user?.optionTwo?.votes.length;
   const totalVotes = totalVotesForOptionOne + totalVotesForOptionTwo;
   //////////////////////////////////////////////////////
-  console.log(user?.optionTwo?.votes.includes(currentUserNameId));
 
   //////////////////////////////////////////////////////
   const Item = styled(Paper)(({ theme }) => ({
