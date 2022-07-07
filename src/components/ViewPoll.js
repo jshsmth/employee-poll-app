@@ -16,10 +16,18 @@ function ViewPoll() {
   let { id } = useParams();
   const pollId = id;
   const users = useSelector((state) => state.users);
+  const currentUserNameId = useSelector(
+    (state) => state.users?.userLoggedIn?.id
+  );
   const questions = useSelector((state) => state.questions);
   const user = questions?.value?.[0]?.[pollId];
   const userThatMadePoll = users?.value?.[0]?.[user?.author];
   const userLoggedIn = useSelector((state) => state.users.userLoggedIn);
+  const totalVotesForOptionOne = user?.optionOne?.votes.length;
+  const totalVotesForOptionTwo = user?.optionTwo?.votes.length;
+  const totalVotes = totalVotesForOptionOne + totalVotesForOptionTwo;
+  //////////////////////////////////////////////////////
+  console.log(user?.optionTwo?.votes.includes(currentUserNameId));
 
   //////////////////////////////////////////////////////
   const Item = styled(Paper)(({ theme }) => ({
@@ -93,6 +101,37 @@ function ViewPoll() {
               Vote
             </Button>
           </Grid>
+        </Grid>
+        <Grid container spacing={2}>
+          <Grid item xs={6}>
+            <Item>
+              <Typography variant="h5">
+                Total votes: {totalVotesForOptionOne}
+                <Typography>
+                  Percentage: {(totalVotesForOptionOne / totalVotes) * 100}%
+                </Typography>
+              </Typography>
+              {user?.optionOne?.votes.includes(currentUserNameId) && (
+                <Typography>You voted for this poll 🗳</Typography>
+              )}
+            </Item>
+          </Grid>
+          <Grid item xs={6}>
+            <Item>
+              {" "}
+              <Typography variant="h5">
+                Total votes: {totalVotesForOptionTwo}
+                <Typography>
+                  Percentage: {(totalVotesForOptionTwo / totalVotes) * 100}%
+                </Typography>
+              </Typography>
+              {user?.optionTwo?.votes.includes(currentUserNameId) && (
+                <Typography>You voted for this poll 🗳</Typography>
+              )}
+            </Item>
+          </Grid>
+          <Grid item xs={6}></Grid>
+          <Grid item xs={6}></Grid>
         </Grid>
       </Container>
     </>
