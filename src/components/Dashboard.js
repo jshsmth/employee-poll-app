@@ -28,7 +28,7 @@ function Dashboard() {
       >
         Unanswered ⛔️
       </Typography>
-      <UnanswerdCard title="New questions" />
+      <UnanswerdCard />
       <Typography
         variant="h5"
         component="div"
@@ -41,7 +41,7 @@ function Dashboard() {
       >
         Answered 🎈
       </Typography>
-      <AnsweredCard title="Answered questions" />
+      <AnsweredCard />
     </Box>
   );
 }

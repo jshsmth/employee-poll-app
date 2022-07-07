@@ -6,8 +6,9 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-function DashboardCard({ title }) {
+function DashboardCard() {
   const currentUserId = useSelector((state) => state.users.userLoggedIn?.id);
   const currentUser = useSelector((state) => state.users?.value[0]);
   const questions = useSelector((state) => state.questions);
@@ -15,6 +16,12 @@ function DashboardCard({ title }) {
   const currentUserAnsweredQuestions = Object.keys(
     currentUser[currentUserId]?.answers
   );
+
+  let navigate = useNavigate();
+
+  const handleViewPoll = (pollId) => {
+    navigate(`/questions/${pollId}`);
+  };
 
   const unAnsweredQuestions = Object.keys(questionsFromUsers)
     .filter((key) => {
@@ -26,27 +33,41 @@ function DashboardCard({ title }) {
       });
     }, {});
 
-  console.log(unAnsweredQuestions);
+  const currentUsersNotAnswered = Object.values(unAnsweredQuestions);
 
   return (
-    <>
-      <Card sx={{ maxWidth: 275, margin: "2rem" }}>
-        <CardContent>
-          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-            USERNAME
-          </Typography>
-          <Typography variant="h5" component="div">
-            TIMESTAMP
-          </Typography>
-          <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            adjective
-          </Typography>
-        </CardContent>
-        <CardActions>
-          <Button size="small">View poll</Button>
-        </CardActions>
-      </Card>
-    </>
+    <Box
+      sx={{
+        display: "flex",
+      }}
+    >
+      {currentUsersNotAnswered.map((poll) => {
+        return (
+          <Card key={poll?.id} sx={{ maxWidth: 275, margin: "2rem" }}>
+            <CardContent>
+              <Typography
+                sx={{ fontSize: 14 }}
+                color="text.secondary"
+                gutterBottom
+              >
+                {poll?.id}
+              </Typography>
+              <Typography variant="h5" component="div">
+                {poll?.author}
+              </Typography>
+              <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                {poll?.timestamp}
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <Button size="small" onClick={() => handleViewPoll(poll?.id)}>
+                View poll
+              </Button>
+            </CardActions>
+          </Card>
+        );
+      })}
+    </Box>
   );
 }
 

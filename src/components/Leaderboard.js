@@ -30,7 +30,6 @@ function Leaderboard() {
   const rows = [
     ...userNames.map((name) => {
       const user = userAccounts[name];
-
       const answersLength = Object.keys(user.answers);
       const created = answersLength?.length || 0;
       const avatarUrl = user?.avatarURL;
@@ -61,8 +60,8 @@ function Leaderboard() {
                 <TableRow>
                   <TableCell>User Avatars</TableCell>
                   <TableCell align="right">Username</TableCell>
-                  <TableCell align="right">Answered</TableCell>
                   <TableCell align="right">Created</TableCell>
+                  <TableCell align="right">Answered</TableCell>
                   <TableCell align="right">Total points</TableCell>
                 </TableRow>
               </TableHead>
