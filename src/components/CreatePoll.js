@@ -20,12 +20,16 @@ function CreatePoll() {
   ////////////////////////////////////////////////////////////
 
   const handleCreatePoll = async (question) => {
-    await _saveQuestion({
-      optionOneText: question.optionOneText,
-      optionTwoText: question.optionTwoText,
-      author: currentUser,
-    });
-    navigate("/");
+    try {
+      await _saveQuestion({
+        optionOneText: question?.optionOneText,
+        optionTwoText: question?.optionTwoText,
+        author: currentUser,
+      });
+      navigate("/");
+    } catch {
+      alert("Error creating poll");
+    }
   };
 
   return (

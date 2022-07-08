@@ -33,13 +33,17 @@ function ViewPoll() {
   let navigate = useNavigate();
   //////////////////////////////////////////////////////
   const handleAddVote = async (option) => {
-    const response = await _saveQuestionAnswer({
-      authedUser: currentUserNameId,
-      qid: pollId,
-      answer: option,
-    });
-    navigate("/");
-    return response;
+    try {
+      await _saveQuestionAnswer({
+        authedUser: currentUserNameId,
+        qid: pollId,
+        answer: option,
+      });
+
+      navigate("/");
+    } catch {
+      alert("Error saving vote");
+    }
   };
   //////////////////////////////////////////////////////
   const Item = styled(Paper)(({ theme }) => ({
