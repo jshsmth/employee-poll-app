@@ -15,6 +15,9 @@ const userSlice = createSlice({
     setUser: (state, action) => {
       state.userLoggedIn = action.payload;
     },
+    addQuestion: (state, action) => {
+      state.value.push(action.payload);
+    },
   },
 });
 

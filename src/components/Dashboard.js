@@ -8,40 +8,39 @@ import AnsweredCard from "./AnsweredCard";
 function Dashboard() {
   const currentUser = useSelector((state) => state.users.userLoggedIn);
 
-  // // const users = useSelector((state) => state.users);
-  // const dispatch = useDispatch();
-  // const currentUserAnswers = currentUser?.answers;
-  // const currentUserQuestions = currentUser?.questions;
-
   return (
     <Box>
-      <h1>Welcome, {currentUser?.name}</h1>
-      <Typography
-        variant="h5"
-        component="div"
-        sx={{
-          margin: "2rem",
-          textTransform: "uppercase",
-          color: "red",
-          backgroundColor: "white",
-        }}
-      >
-        Unanswered ⛔️
-      </Typography>
-      <UnanswerdCard />
-      <Typography
-        variant="h5"
-        component="div"
-        sx={{
-          margin: "2rem",
-          textTransform: "uppercase",
-          color: "green",
-          backgroundColor: "white",
-        }}
-      >
-        Answered 🎈
-      </Typography>
-      <AnsweredCard />
+      {currentUser && (
+        <>
+          <h1>Welcome, {currentUser?.name}</h1>
+          <Typography
+            variant="h5"
+            component="div"
+            sx={{
+              margin: "2rem",
+              textTransform: "uppercase",
+              color: "red",
+              backgroundColor: "white",
+            }}
+          >
+            Unanswered ⛔️
+          </Typography>
+          <UnanswerdCard />
+          <Typography
+            variant="h5"
+            component="div"
+            sx={{
+              margin: "2rem",
+              textTransform: "uppercase",
+              color: "green",
+              backgroundColor: "white",
+            }}
+          >
+            Answered 🎈
+          </Typography>
+          <AnsweredCard />
+        </>
+      )}
     </Box>
   );
 }
