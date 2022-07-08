@@ -12,6 +12,8 @@ import { styled } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 import Nav from "./Nav";
 import App from "./App";
+import { _saveQuestionAnswer } from "../store/_DATA";
+import { useNavigate } from "react-router-dom";
 
 function ViewPoll() {
   let { id } = useParams();
@@ -27,8 +29,18 @@ function ViewPoll() {
   const totalVotesForOptionOne = user?.optionOne?.votes.length;
   const totalVotesForOptionTwo = user?.optionTwo?.votes.length;
   const totalVotes = totalVotesForOptionOne + totalVotesForOptionTwo;
-  //////////////////////////////////////////////////////
 
+  let navigate = useNavigate();
+  //////////////////////////////////////////////////////
+  const handleAddVote = async (option) => {
+    const response = await _saveQuestionAnswer({
+      authedUser: currentUserNameId,
+      qid: pollId,
+      answer: option,
+    });
+    navigate("/");
+    return response;
+  };
   //////////////////////////////////////////////////////
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -82,6 +94,7 @@ function ViewPoll() {
             </Grid>
             <Grid item xs={6}>
               <Button
+                onClick={() => handleAddVote("optionOne")}
                 variant="contained"
                 color="success"
                 sx={{
@@ -93,6 +106,7 @@ function ViewPoll() {
             </Grid>
             <Grid item xs={6}>
               <Button
+                onClick={() => handleAddVote("optionTwo")}
                 variant="contained"
                 color="success"
                 sx={{
