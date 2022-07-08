@@ -10,13 +10,10 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     addUser: (state, action) => {
-      state.value.push(action.payload);
+      state.value = [action.payload];
     },
     setUser: (state, action) => {
       state.userLoggedIn = action.payload;
-    },
-    addQuestion: (state, action) => {
-      state.value.push(action.payload);
     },
   },
 });

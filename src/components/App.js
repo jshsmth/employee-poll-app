@@ -12,6 +12,16 @@ function App() {
   const dispatch = useDispatch();
   const userLoggedIn = useSelector((state) => state.users.userLoggedIn);
 
+  const getUsers = React.useCallback(async () => {
+    const response = await _getUsers();
+    dispatch(addUser(response));
+  }, [dispatch]);
+
+  const getQuestions = React.useCallback(async () => {
+    const response = await _getQuestions();
+    dispatch(addQuestions(response));
+  }, [dispatch]);
+
   ////////////////////////////////////////////////
   React.useEffect(() => {
     getUsers();
@@ -19,18 +29,8 @@ function App() {
     return () => {
       console.log("App pre-populated successfully");
     };
-  }, []);
+  }, [getQuestions, getUsers]);
   ////////////////////////////////////////////////
-
-  const getUsers = async () => {
-    const response = await _getUsers();
-    dispatch(addUser(response));
-  };
-
-  const getQuestions = async () => {
-    const response = await _getQuestions();
-    dispatch(addQuestions(response));
-  };
 
   ////////////////////////////////////////////////
   const allUsers = users?.value;
