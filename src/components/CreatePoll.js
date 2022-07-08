@@ -10,6 +10,7 @@ import { Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { _saveQuestion } from "../store/_DATA";
 import { addQuestions } from "../store/questionSlice";
+import App from "./App";
 
 function CreatePoll() {
   const userLoggedIn = useSelector((state) => state.users?.userLoggedIn?.id);
@@ -33,55 +34,58 @@ function CreatePoll() {
   return (
     <div>
       {currentUser && <Nav />}
-      <Box
-        sx={{
-          margin: "10rem",
-        }}
-      >
-        <form onSubmit={handleSubmit(handleCreatePoll)}>
-          <Typography variant="h1">Create poll</Typography>
-          <Typography variant="h4">Would you rather?</Typography>
-          <FormControl
-            variant="filled"
-            sx={{
-              width: "100%",
-            }}
-          >
-            <Typography>Option One:</Typography>
-            <FilledInput
-              id="component-helper"
-              {...register("optionOneText")}
-              placeholder="Pleae enter option one"
+      {currentUser && (
+        <Box
+          sx={{
+            margin: "10rem",
+          }}
+        >
+          <form onSubmit={handleSubmit(handleCreatePoll)}>
+            <Typography variant="h1">Create poll</Typography>
+            <Typography variant="h4">Would you rather?</Typography>
+            <FormControl
+              variant="filled"
               sx={{
-                marginBottom: "1rem",
+                width: "100%",
               }}
-            />
-          </FormControl>
-          <FormControl
-            variant="filled"
-            sx={{
-              width: "100%",
-            }}
-          >
-            <Typography>Option Two:</Typography>
-            <FilledInput
-              id="component-helper"
-              {...register("optionTwoText")}
-              placeholder="Pleae enter option two"
-            />
-          </FormControl>
-          <Button
-            type="submit"
-            variant="contained"
-            color="success"
-            sx={{
-              marginTop: "1rem",
-            }}
-          >
-            Create
-          </Button>
-        </form>
-      </Box>
+            >
+              <Typography>Option One:</Typography>
+              <FilledInput
+                id="component-helper"
+                {...register("optionOneText")}
+                placeholder="Pleae enter option one"
+                sx={{
+                  marginBottom: "1rem",
+                }}
+              />
+            </FormControl>
+            <FormControl
+              variant="filled"
+              sx={{
+                width: "100%",
+              }}
+            >
+              <Typography>Option Two:</Typography>
+              <FilledInput
+                id="component-helper"
+                {...register("optionTwoText")}
+                placeholder="Pleae enter option two"
+              />
+            </FormControl>
+            <Button
+              type="submit"
+              variant="contained"
+              color="success"
+              sx={{
+                marginTop: "1rem",
+              }}
+            >
+              Create
+            </Button>
+          </form>
+        </Box>
+      )}
+      {!currentUser && <App />}
     </div>
   );
 }

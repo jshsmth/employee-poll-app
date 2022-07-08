@@ -12,6 +12,7 @@ import Container from "@mui/material/Container";
 import Box from "@mui/system/Box";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
+import App from "./App";
 
 function createData(avatarUrl, name, questionsMade, created, totalPoints) {
   return { avatarUrl, name, questionsMade, created, totalPoints };
@@ -91,6 +92,7 @@ function Leaderboard() {
           </Box>
         </Container>
       )}
+      {!userLoggedIn && <App />}
     </div>
   );
 }
