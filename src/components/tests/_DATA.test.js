@@ -27,6 +27,13 @@ describe("_saveQuestion", () => {
   });
   it("should throw error if wrong format", async () => {
     // _saveQuestion should throw error when empty or missing fields
+    expect.assertions(1);
+    try {
+      await _saveQuestion({});
+    } catch (error) {
+      console.log(error);
+      expect(error).toBeTruthy();
+    }
   });
 });
 
@@ -36,6 +43,12 @@ describe("_saveQuestionAnswer", () => {
     expect(response).toEqual(true);
   });
   it("should not save vote to the database if wrong format", async () => {
-    // _saveQuestionAnswer should return false if wrong format
+    expect.assertions(1);
+    try {
+      await _saveQuestionAnswer({});
+    } catch (error) {
+      console.log(error);
+      expect(error).toBeTruthy();
+    }
   });
 });
