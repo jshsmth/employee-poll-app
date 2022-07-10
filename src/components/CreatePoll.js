@@ -1,6 +1,6 @@
 import React from "react";
 import Nav from "./Nav";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import FilledInput from "@mui/material/FilledInput";
 import FormControl from "@mui/material/FormControl";
@@ -14,7 +14,6 @@ import App from "./App";
 
 function CreatePoll() {
   const userLoggedIn = useSelector((state) => state.users?.userLoggedIn?.id);
-  const [currentUser, setCurrentUser] = React.useState(userLoggedIn);
   const { register, handleSubmit } = useForm();
   let navigate = useNavigate();
   ////////////////////////////////////////////////////////////
@@ -24,7 +23,7 @@ function CreatePoll() {
       await _saveQuestion({
         optionOneText: question?.optionOneText,
         optionTwoText: question?.optionTwoText,
-        author: currentUser,
+        author: userLoggedIn,
       });
       navigate("/");
     } catch {
@@ -34,8 +33,8 @@ function CreatePoll() {
 
   return (
     <div>
-      {currentUser && <Nav />}
-      {currentUser && (
+      {userLoggedIn && <Nav />}
+      {userLoggedIn && (
         <Box
           sx={{
             margin: "10rem",
@@ -86,7 +85,7 @@ function CreatePoll() {
           </form>
         </Box>
       )}
-      {!currentUser && <App />}
+      {!userLoggedIn && <App />}
     </div>
   );
 }
