@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userSlice from "./userSlice";
-import questionSlice from "./questionSlice";
+import userSlice from "./mockUserSlice";
+import questionSlice from "./mockQuestionSlice";
 
 export const store = configureStore({
   reducer: {
