@@ -1,4 +1,3 @@
-// editor.action.inlineSuggest.trigger
 import { _saveQuestion } from "../../store/_DATA";
 import { _saveQuestionAnswer } from "../../store/_DATA";
 
@@ -16,7 +15,9 @@ const votePoll = {
 
 describe("_saveQuestion", () => {
   it("should save a question to the database", async () => {
+    expect.assertions(3);
     const response = await _saveQuestion(createPoll);
+
     expect(response?.author).toEqual(createPoll?.author);
     expect(response?.optionOneText?.text).toEqual(
       createPoll?.optionOneText?.text
