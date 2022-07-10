@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { mockUsers } from "./mockUsers";
 
 const initialState = {
-  value: [],
+  value: mockUsers,
   userLoggedIn: {
     id: "sarahedo",
     password: "password123",

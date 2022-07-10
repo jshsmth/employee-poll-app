@@ -12,8 +12,6 @@ function App() {
   const dispatch = useDispatch();
   const userLoggedIn = useSelector((state) => state.users.userLoggedIn);
 
-  console.log(userLoggedIn);
-
   const getUsers = React.useCallback(async () => {
     const response = await _getUsers();
     dispatch(addUser(response));
