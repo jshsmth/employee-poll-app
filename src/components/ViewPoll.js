@@ -128,7 +128,7 @@ function ViewPoll() {
                   width: "100%",
                 }}
               >
-                {tempVote === "optionOne" ? "Voted" : "Vote"}
+                {tempVote === "optionOne" ? "Voted 🥳" : "Vote"}
               </Button>
             </Grid>
             <Grid item xs={6}>
@@ -140,7 +140,7 @@ function ViewPoll() {
                   width: "100%",
                 }}
               >
-                {tempVote === "optionTwo" ? "Voted" : "Vote"}
+                {tempVote === "optionTwo" ? "Voted 🥳" : "Vote"}
               </Button>
             </Grid>
           </Grid>
