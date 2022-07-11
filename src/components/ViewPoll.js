@@ -14,6 +14,7 @@ import Nav from "./Nav";
 import App from "./App";
 import { _saveQuestionAnswer } from "../store/_DATA";
 import { useNavigate } from "react-router-dom";
+import NotFound from "./NotFound";
 
 function ViewPoll() {
   let { id } = useParams();
@@ -56,8 +57,8 @@ function ViewPoll() {
   //////////////////////////////////////////////////////
   return (
     <>
-      {userLoggedIn && <Nav />}
-      {userLoggedIn && (
+      {userLoggedIn && user?.author && <Nav />}
+      {userLoggedIn && user?.author && (
         <Container
           maxWidth="lg"
           sx={{
@@ -155,6 +156,7 @@ function ViewPoll() {
         </Container>
       )}
       {!userLoggedIn && <App />}
+      {userLoggedIn && !user?.author && <NotFound />}
     </>
   );
 }
