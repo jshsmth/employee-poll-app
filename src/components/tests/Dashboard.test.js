@@ -14,7 +14,6 @@ describe("Dashboard", () => {
     await screen.findByText(/xj352vofupe1dqz9emx13r/i);
     fireEvent.click(screen.getByText(/xj352vofupe1dqz9emx13r/i));
     expect(screen.getAllByText(/mtsamis/i)[0]).toBeInTheDocument();
-
     ////////////////////////////////////////////////////////////////////////////////
   });
 });
