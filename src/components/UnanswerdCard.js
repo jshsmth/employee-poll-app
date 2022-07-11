@@ -46,7 +46,11 @@ function DashboardCard() {
         .sort((a, b) => b.timestamp - a.timestamp)
         .map((poll) => {
           return (
-            <Card key={poll?.id} sx={{ maxWidth: 275, margin: "2rem" }}>
+            <Card
+              key={poll?.id}
+              sx={{ maxWidth: 275, margin: "2rem" }}
+              onClick={() => handleViewPoll(poll?.id)}
+            >
               <CardContent>
                 <Typography
                   sx={{ fontSize: 14 }}
@@ -63,9 +67,7 @@ function DashboardCard() {
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button size="small" onClick={() => handleViewPoll(poll?.id)}>
-                  View poll
-                </Button>
+                <Button size="small">View poll</Button>
               </CardActions>
             </Card>
           );

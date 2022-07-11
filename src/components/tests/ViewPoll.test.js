@@ -6,10 +6,8 @@ import { store } from "../tests/mockStore/store";
 describe("ViewPoll", () => {
   it("Should be able to create poll", () => {
     reduxWrapper(<ViewPoll />, store);
-    expect(screen.getByText("Would you rather?")).toBeInTheDocument();
-    expect(screen.getAllByText(/percentage/i)).toHaveLength(2);
-    expect(screen.getAllByText(/vote/i)).toHaveLength(4);
-    expect(screen.getByText("Poll by")).toBeInTheDocument();
+    expect(screen.getByText(/create poll/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/Go back to dashboard/i)[0]).toBeInTheDocument();
     ////////////////////////////////////////////////////////////////////////////////
   });
   it("Should match snapshot", () => {

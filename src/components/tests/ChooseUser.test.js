@@ -14,7 +14,4 @@ describe("ChooseUser Page", () => {
     expect(screen.getByText("Passwords")).toBeInTheDocument();
     ////////////////////////////////////////////////////////////////////////////////
   });
-  it("Should match snapshot", () => {
-    expect(<ChooseUser />).toMatchSnapshot();
-  });
 });

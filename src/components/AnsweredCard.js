@@ -31,7 +31,11 @@ function AnsweredCard() {
         .map((questionId) => {
           const poll = questions?.value[0][questionId];
           return (
-            <Card key={questionId} sx={{ maxWidth: 275, margin: "2rem" }}>
+            <Card
+              key={questionId}
+              sx={{ maxWidth: 275, margin: "2rem" }}
+              onClick={() => handleViewPoll(poll?.id)}
+            >
               <CardContent>
                 <Typography
                   sx={{ fontSize: 14 }}
@@ -48,9 +52,7 @@ function AnsweredCard() {
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button size="small" onClick={() => handleViewPoll(poll?.id)}>
-                  View poll
-                </Button>
+                <Button size="small">View poll</Button>
               </CardActions>
             </Card>
           );
