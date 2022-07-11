@@ -30,6 +30,7 @@ function ViewPoll() {
   const totalVotesForOptionOne = user?.optionOne?.votes.length;
   const totalVotesForOptionTwo = user?.optionTwo?.votes.length;
   const totalVotes = totalVotesForOptionOne + totalVotesForOptionTwo;
+  const [tempVote, setTempVote] = React.useState("");
 
   const hasUserAlreadyVoted =
     user?.optionOne?.votes.includes(currentUserNameId) ||
@@ -50,6 +51,11 @@ function ViewPoll() {
       return;
     }
     try {
+      // secondary safety check to prevent user from voting on a poll twice
+      if (tempVote === "optionOne" || tempVote === "optionTwo") {
+        return;
+      }
+      setTempVote(option);
       dispatch(
         addVoteToUsersArray({
           authedUser: currentUserNameId,
@@ -122,7 +128,7 @@ function ViewPoll() {
                   width: "100%",
                 }}
               >
-                Vote
+                {tempVote === "optionOne" ? "Voted" : "Vote"}
               </Button>
             </Grid>
             <Grid item xs={6}>
@@ -134,7 +140,7 @@ function ViewPoll() {
                   width: "100%",
                 }}
               >
-                Vote
+                {tempVote === "optionTwo" ? "Voted" : "Vote"}
               </Button>
             </Grid>
           </Grid>
