@@ -23,7 +23,7 @@ function Dashboard() {
               backgroundColor: "white",
             }}
           >
-            Unanswered ⛔️
+            Unanswered ⛔️ NEWEST - OLDEST
           </Typography>
           <UnanswerdCard />
           <Typography
@@ -36,7 +36,7 @@ function Dashboard() {
               backgroundColor: "white",
             }}
           >
-            Answered 🎈
+            Answered 🎈 NEWEST - OLDEST
           </Typography>
           <AnsweredCard />
         </>

@@ -32,11 +32,12 @@ function Leaderboard() {
       const answersLength = Object.keys(user.answers);
       const created = answersLength?.length || 0;
       const avatarUrl = user?.avatarURL;
-      const questionsMade = user?.questions.length || 0;
+      const questionsMade = user?.questions?.length || 0;
       const totalPoints = created + questionsMade;
       return createData(avatarUrl, name, questionsMade, created, totalPoints);
     }),
   ];
+
   ///////////////////////////////////////
   return (
     <div>
