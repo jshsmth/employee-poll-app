@@ -1,6 +1,6 @@
 import React from "react";
 import Nav from "./Nav";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import FilledInput from "@mui/material/FilledInput";
 import FormControl from "@mui/material/FormControl";
@@ -8,7 +8,7 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { _saveQuestion } from "../store/_DATA";
+import { savePoll } from "../store/questionSlice";
 
 import App from "./App";
 
@@ -16,15 +16,19 @@ function CreatePoll() {
   const userLoggedIn = useSelector((state) => state.users?.userLoggedIn?.id);
   const { register, handleSubmit } = useForm();
   let navigate = useNavigate();
+  const dispatch = useDispatch();
+
   ////////////////////////////////////////////////////////////
 
   const handleCreatePoll = async (question) => {
     try {
-      await _saveQuestion({
-        optionOneText: question?.optionOneText,
-        optionTwoText: question?.optionTwoText,
-        author: userLoggedIn,
-      });
+      dispatch(
+        savePoll({
+          optionOneText: question?.optionOneText,
+          optionTwoText: question?.optionTwoText,
+          author: userLoggedIn,
+        })
+      );
       navigate("/");
     } catch {
       alert("Error creating poll");

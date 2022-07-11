@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Typography } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
@@ -12,9 +12,9 @@ import { styled } from "@mui/material/styles";
 import { Link } from "react-router-dom";
 import Nav from "./Nav";
 import App from "./App";
-import { _saveQuestionAnswer } from "../store/_DATA";
 import { useNavigate } from "react-router-dom";
 import NotFound from "./NotFound";
+import { addVoteToUsersArray } from "../store/userSlice";
 
 function ViewPoll() {
   let { id } = useParams();
@@ -31,17 +31,33 @@ function ViewPoll() {
   const totalVotesForOptionTwo = user?.optionTwo?.votes.length;
   const totalVotes = totalVotesForOptionOne + totalVotesForOptionTwo;
 
+  const hasUserAlreadyVoted =
+    user?.optionOne?.votes.includes(currentUserNameId) ||
+    user?.optionTwo?.votes.includes(currentUserNameId);
+
   let navigate = useNavigate();
+  const dispatch = useDispatch();
   //////////////////////////////////////////////////////
   const handleAddVote = async (option) => {
+    // prevent user from voting on their own poll
+    if (user?.author === currentUserNameId) {
+      alert("You cannot vote on your own poll");
+      return;
+    }
+    // prevent user from voting on a poll they've already voted on
+    if (hasUserAlreadyVoted) {
+      alert("You have already voted on this poll");
+      return;
+    }
     try {
-      await _saveQuestionAnswer({
-        authedUser: currentUserNameId,
-        qid: pollId,
-        answer: option,
-      });
-
-      navigate("/");
+      dispatch(
+        addVoteToUsersArray({
+          authedUser: currentUserNameId,
+          qid: pollId,
+          answer: option,
+        })
+      );
+      navigate(`/questions/${pollId}`);
     } catch {
       alert("Error saving vote");
     }
