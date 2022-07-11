@@ -1,16 +1,20 @@
-import { screen, fireEvent } from "@testing-library/react";
+import { screen, fireEvent, waitFor } from "@testing-library/react";
 import App from "../App";
+import ViewPoll from "../ViewPoll";
 import { reduxWrapper } from "../tests/testHelpers";
 import { store } from "../tests/mockStore/store";
+import { act } from "react-dom/test-utils";
 
 describe("Dashboard", () => {
   it("Dashboard should allow user to navigate to view poll", async () => {
-    reduxWrapper(<App />, store);
+    act(() => {
+      reduxWrapper(<App />, store);
+    });
     expect(screen.getByText(/unanswered/i)).toBeInTheDocument();
     expect(screen.getByText(/welcome/i)).toBeInTheDocument();
-    const pollId = screen.getByText(/xj352vofupe1dqz9emx13r/i);
-    await fireEvent.click(pollId);
-    screen.findByText(/Would you rather?/i);
+    await screen.findByText(/xj352vofupe1dqz9emx13r/i);
+    fireEvent.click(screen.getByText(/xj352vofupe1dqz9emx13r/i));
+    expect(screen.getAllByText(/mtsamis/i)[0]).toBeInTheDocument();
 
     ////////////////////////////////////////////////////////////////////////////////
   });
