@@ -11,6 +11,7 @@ import Container from "@mui/material/Container";
 import Box from "@mui/system/Box";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
+import propTypes from "prop-types";
 
 import { setUser } from "../store/userSlice";
 import { useDispatch } from "react-redux";
@@ -85,5 +86,9 @@ function ChooseUser({ allUsers }) {
     </Container>
   );
 }
+
+ChooseUser.propTypes = {
+  allUsers: propTypes.array.isRequired,
+};
 
 export default ChooseUser;
