@@ -1,6 +1,5 @@
-import { screen, fireEvent, waitFor } from "@testing-library/react";
+import { screen, fireEvent } from "@testing-library/react";
 import App from "../App";
-import ViewPoll from "../ViewPoll";
 import { reduxWrapper } from "../tests/testHelpers";
 import { store } from "../tests/mockStore/store";
 import { act } from "react-dom/test-utils";
