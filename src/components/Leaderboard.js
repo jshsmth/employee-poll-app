@@ -23,16 +23,22 @@ function Leaderboard() {
   const allUsers = useSelector((state) => state.users?.value);
   const userAccounts = allUsers[0] || {};
   const userNames = Object.keys(userAccounts);
+  const questions = useSelector((state) => state.questions.value[0] || {});
+  const totalQuestions = Object.values(questions);
 
   ////////////////////////////////////
 
   const rows = [
     ...userNames.map((name) => {
       const user = userAccounts[name];
+      console.log(user);
+
       const answersLength = Object.keys(user.answers);
       const created = answersLength?.length || 0;
       const avatarUrl = user?.avatarURL;
-      const questionsMade = user?.questions?.length || 0;
+      const questionsMade = totalQuestions.filter(
+        (question) => question.author === user?.id
+      ).length;
       const totalPoints = created + questionsMade;
       return createData(avatarUrl, name, questionsMade, created, totalPoints);
     }),
