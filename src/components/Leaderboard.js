@@ -31,7 +31,6 @@ function Leaderboard() {
   const rows = [
     ...userNames.map((name) => {
       const user = userAccounts[name];
-      console.log(user);
 
       const answersLength = Object.keys(user.answers);
       const created = answersLength?.length || 0;
